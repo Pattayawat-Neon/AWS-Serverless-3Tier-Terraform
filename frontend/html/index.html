@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daily Income & Expense Tracker</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <h1>Daily Income & Expense</h1>
+
+    <div class="balance">
+      <span>Current Balance</span>
+      <h2 id="balance">$0</h2>
+    </div>
+
+    <form id="transaction-form">
+      <input type="text" id="description" placeholder="Description" required />
+      <input type="number" id="amount" placeholder="Amount" required />
+
+    <select id="category" required>
+        <option value="" disabled selected>Category</option>
+        <option value="salary">Salary</option>
+        <option value="food">Food</option>
+        <option value="transport">Transport</option>
+        <option value="shopping">Shopping</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="other">Other</option>
+    </select>
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <button type="submit">Add Transaction</button>
+    </form>
+
+    <div class="list" id="list"></div>
+
+    <footer>Modern Daily Finance Tracker UI</footer>
+  </div>
+
+  <script src="/javascript/config.js"></script>
+  <script src="/javascript/script.js"></script>
+</body>
+</html>

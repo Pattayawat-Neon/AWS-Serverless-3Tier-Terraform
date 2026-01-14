@@ -1,0 +1,35 @@
+# Terraform
+.terraform/
+terraform.tfstate*
+.terraform.lock.hcl
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Node.js (if any)
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# AWS
+.aws/
+
+# Git LFS
+*.lfs

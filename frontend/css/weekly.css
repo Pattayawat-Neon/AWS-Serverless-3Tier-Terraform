@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f2f4f7;
+}
+
+.container {
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 24px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+input[type="week"] {
+  background: #ffffff;
+  color: #e5e7eb;
+  border: 1px none #334155;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.card {
+  padding: 16px;
+  border-radius: 10px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.income { color: #22c55e; }
+.expense { color: #ef4444; }
+.balance { color: #38bdf8; }
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+
+.amount.income { color: #22c55e; }
+.amount.expense { color: #ef4444; }
