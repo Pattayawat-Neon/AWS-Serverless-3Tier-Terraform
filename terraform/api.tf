@@ -1,12 +1,19 @@
+resource "aws_apigatewayv2_api" "api" {
+  name          = "daily-finance-api-${var.env}"
+  protocol_type = "HTTP"
+}
+
 resource "aws_cloudwatch_log_group" "api_logs" {
   name              = "/aws/apigateway/daily-finance-${var.env}"
   retention_in_days = 30
 }
 resource "aws_apigatewayv2_integration" "create" {
-  api_id           = aws_apigatewayv2_api.api.id
-  integration_type = "AWS_PROXY"
-  integration_uri  = aws_lambda_function.create_transaction.invoke_arn
+  api_id                 = aws_apigatewayv2_api.api.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.create_transaction.invoke_arn
+  payload_format_version = "2.0"
 }
+
 
 resource "aws_apigatewayv2_route" "post_tx" {
   api_id    = aws_apigatewayv2_api.api.id
@@ -63,7 +70,7 @@ resource "aws_lambda_permission" "api" {
     delete = aws_lambda_function.delete_transaction.function_name
   }
 
-  statement_id  = "AllowInvoke-${each.key}"
+  statement_id = "AllowInvoke-${each.key}-${var.env}"
   action        = "lambda:InvokeFunction"
   function_name = each.value
   principal     = "apigateway.amazonaws.com"
