@@ -1,6 +1,10 @@
 import json
 import os
 import boto3
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 dynamodb = boto3.resource('dynamodb')
 TABLE_NAME = os.environ['TABLE_NAME']
@@ -13,6 +17,7 @@ CORS_HEADERS = {
 }
 
 def handler(event, context):
+    logger.info(f'Event: {event}')
     # รองรับ preflight
     if event.get("requestContext", {}).get("http", {}).get("method") == "OPTIONS":
         return {
@@ -22,7 +27,9 @@ def handler(event, context):
         }
 
     try:
+        logger.info('Deleting transaction')
         sk = event.get("pathParameters", {}).get("sk")
+        logger.info(f'SK: {sk}')
         if not sk:
             return {
                 "statusCode": 400,
@@ -37,6 +44,7 @@ def handler(event, context):
                 "sk": sk
             }
         )
+        logger.info('Transaction deleted')
 
         return {
             "statusCode": 200,
@@ -45,6 +53,7 @@ def handler(event, context):
         }
 
     except Exception as e:
+        logger.error(f'Error: {str(e)}')
         return {
             "statusCode": 500,
             "headers": CORS_HEADERS,
