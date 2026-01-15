@@ -1,4 +1,5 @@
-const API_URL = window.API_URL || 'https://p3rgl40yd7.execute-api.us-east-1.amazonaws.com/'; 
+const API_URL = (window.API_URL || 'https://p3rgl40yd7.execute-api.us-east-1.amazonaws.com')
+  .replace(/\/$/, '');
 const form = document.getElementById("transaction-form");
 const list = document.getElementById("list");
 const balanceEl = document.getElementById("balance");
@@ -7,7 +8,7 @@ let balance = 0;
 
 async function loadTransactions() {
   try {
-    const response = await fetch(`${API_URL}transactions`);
+    const response = await fetch(`${API_URL}/transactions`);
     if (!response.ok) throw new Error('Failed to load transactions');
     const transactions = await response.json();
     renderTransactions(transactions);
@@ -42,7 +43,7 @@ function renderTransactions(transactions) {
     const deleteBtn = item.querySelector(".delete");
     deleteBtn.addEventListener("click", async () => {
       try {
-        const response = await fetch(`${API_URL}transactions/${tx.sk}`, { method: 'DELETE' });
+        const response = await fetch(`${API_URL}/transactions/${tx.sk}`, { method: 'DELETE' });
         if (!response.ok) throw new Error('Failed to delete');
         loadTransactions(); 
       } catch (error) {
@@ -68,7 +69,7 @@ async function handleSubmit(e) {
   const transaction = { description, amount, category, type };
 
   try {
-    const response = await fetch(`${API_URL}transactions`, {
+    const response = await fetch(`${API_URL}/transactions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(transaction)
