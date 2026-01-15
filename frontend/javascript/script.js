@@ -43,13 +43,20 @@ function renderTransactions(transactions) {
     const deleteBtn = item.querySelector(".delete");
     deleteBtn.addEventListener("click", async () => {
       try {
-        const response = await fetch(`${API_URL}/transactions/${tx.sk}`, { method: 'DELETE' });
+        const encodedSk = encodeURIComponent(tx.sk);
+
+        const response = await fetch(
+          `${API_URL}/transactions/${encodedSk}`,
+          { method: 'DELETE' }
+        );
+
         if (!response.ok) throw new Error('Failed to delete');
-        loadTransactions(); 
+        loadTransactions();
       } catch (error) {
         console.error('Error deleting transaction:', error);
       }
     });
+
 
     list.appendChild(item);
     balance += value;
