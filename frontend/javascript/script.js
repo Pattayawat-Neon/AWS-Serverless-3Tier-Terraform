@@ -1,4 +1,4 @@
-const API_URL = window.API_URL;
+const API_URL = window.API_URL || 'https://p3rgl40yd7.execute-api.us-east-1.amazonaws.com'; 
 const form = document.getElementById("transaction-form");
 const list = document.getElementById("list");
 const balanceEl = document.getElementById("balance");
