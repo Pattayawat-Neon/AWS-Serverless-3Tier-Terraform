@@ -15,7 +15,7 @@ resource "aws_lambda_function" "create_transaction" {
   function_name = "create-transaction-${var.env}"
   runtime       = "python3.9"
   handler       = "createTransaction.handler"
-  role          = aws_iam_role.lambda_role.arn
+  role          = "arn:aws:iam::590183867098:role/LabRole"
 
   s3_bucket         = aws_s3_bucket.lambda_bucket.bucket
   s3_key            = aws_s3_object.create_zip.key
@@ -32,7 +32,7 @@ resource "aws_lambda_function" "list_transactions" {
   function_name = "list-transactions-${var.env}"
   runtime       = "python3.9"
   handler       = "listTransactions.handler"
-  role          = aws_iam_role.lambda_role.arn
+  role          = "arn:aws:iam::590183867098:role/LabRole"
 
   s3_bucket         = aws_s3_bucket.lambda_bucket.bucket
   s3_key            = aws_s3_object.list_zip.key
@@ -55,7 +55,7 @@ resource "aws_lambda_function" "delete_transaction" {
   function_name = "delete-transaction-${var.env}"
   runtime       = "python3.9"
   handler       = "deleteTransaction.handler"
-  role          = aws_iam_role.lambda_role.arn
+  role          = "arn:aws:iam::590183867098:role/LabRole"
 
   s3_bucket         = aws_s3_bucket.lambda_bucket.bucket
   s3_key            = aws_s3_object.delete_zip.key

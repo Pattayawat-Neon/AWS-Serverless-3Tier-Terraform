@@ -18,12 +18,3 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
-
-resource "aws_budgets_budget" "serverless-projects" {
-    name = "monthly-budget"
-    budget_type = "COST"
-    limit_amount = "00.00"
-    limit_unit = "USD"
-    time_unit = "MONTHLY"   
-    time_period_start = "2026-01-01_00:00"
-}
