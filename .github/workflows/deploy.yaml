@@ -58,3 +58,12 @@ jobs:
           else
             terraform apply -auto-approve -var="env=dev" -var-file="dev.tfvars"
           fi
+            # Upload Frontend to S3
+      - name: Deploy Frontend to S3
+        run: |
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            aws s3 sync frontend/ s3://daily-finance-frontend-prod --delete
+          else
+            aws s3 sync frontend/ s3://daily-finance-frontend-dev --delete
+          fi
+
