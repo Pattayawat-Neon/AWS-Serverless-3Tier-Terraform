@@ -1,2 +1,2 @@
-env           = "dev"
-db_table_name = "daily-finance-dev"
+env           = "prod"
+db_table_name = "daily-finance-prod"

@@ -30,6 +30,6 @@ venv/
 
 # AWS
 .aws/
-
+.zip/
 # Git LFS
 *.lfs
