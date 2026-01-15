@@ -22,6 +22,14 @@ This project leverages AWS Serverless services to ensure scalability, low cost, 
 
 ---
 
+⚠️ Note on Environment & Constraints This project was developed and tested within the AWS Learner Lab environment. Due to the platform's specific restrictions, certain architectural decisions were made:
+
+Service Availability: Limited to a subset of AWS services (e.g., CloudFront and Route 53 were not used due to lab permissions).
+
+IAM Restrictions: IAM roles and policies were configured within the scope of the LabRole provided by the environment.
+
+Session Management: Infrastructure was designed to be easily reproducible via Terraform to accommodate the 4-hour lab session limit.
+
 ## 📂 Project Structure
 
 ```bash
