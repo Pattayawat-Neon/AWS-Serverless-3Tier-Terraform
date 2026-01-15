@@ -1,4 +1,4 @@
-const API_URL = window.API_URL || 'https://p3rgl40yd7.execute-api.us-east-1.amazonaws.com'; 
+const API_URL = window.API_URL || 'https://p3rgl40yd7.execute-api.us-east-1.amazonaws.com/'; 
 const form = document.getElementById("transaction-form");
 const list = document.getElementById("list");
 const balanceEl = document.getElementById("balance");
@@ -23,7 +23,7 @@ function renderTransactions(transactions) {
   transactions.forEach(tx => {
     const item = document.createElement("div");
     item.classList.add("item", tx.type);
-    item.dataset.sk = tx.sk; // Store sk for delete
+    item.dataset.sk = tx.sk; 
 
     const sign = tx.type === "income" ? "+" : "-";
     const value = tx.type === "income" ? tx.amount : -tx.amount;
