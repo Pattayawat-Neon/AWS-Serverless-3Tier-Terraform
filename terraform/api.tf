@@ -1,6 +1,14 @@
 resource "aws_apigatewayv2_api" "api" {
   name          = "daily-finance-api-${var.env}"
   protocol_type = "HTTP"
+
+  cors_configuration {
+    allow_origins = [
+      "http://daily-finance-frontend-prod.s3-website-us-east-1.amazonaws.com"
+    ]
+    allow_methods = ["GET", "POST", "DELETE", "OPTIONS"]
+    allow_headers = ["content-type"]
+  }
 }
 
 resource "aws_cloudwatch_log_group" "api_logs" {
@@ -30,6 +38,16 @@ resource "aws_apigatewayv2_route" "get_tx" {
   api_id    = aws_apigatewayv2_api.api.id
   route_key = "GET /transactions"
   target    = "integrations/${aws_apigatewayv2_integration.list.id}"
+}
+resource "aws_apigatewayv2_integration" "mock" {
+  api_id           = aws_apigatewayv2_api.api.id
+  integration_type = "MOCK"
+}
+
+resource "aws_apigatewayv2_route" "options_tx" {
+  api_id    = aws_apigatewayv2_api.api.id
+  route_key = "OPTIONS /transactions"
+  target    = "integrations/${aws_apigatewayv2_integration.mock.id}"
 }
 resource "aws_apigatewayv2_integration" "delete" {
   api_id           = aws_apigatewayv2_api.api.id
