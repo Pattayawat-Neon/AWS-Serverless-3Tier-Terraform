@@ -3,6 +3,7 @@ import os
 import boto3
 import logging
 from boto3.dynamodb.conditions import Key
+from decimal import Decimal
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -16,6 +17,11 @@ CORS_HEADERS = {
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Methods": "GET,POST,DELETE,OPTIONS",
 }
+
+def decimal_default(obj):
+    if isinstance(obj, Decimal):
+        return float(obj)
+    raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
 
 def handler(event, context):
     logger.info(f'Event: {event}')
@@ -38,7 +44,7 @@ def handler(event, context):
         return {
             "statusCode": 200,
             "headers": CORS_HEADERS,
-            "body": json.dumps(response.get("Items", []))
+            "body": json.dumps(response.get("Items", []), default=decimal_default)
         }
 
     except Exception as e:
