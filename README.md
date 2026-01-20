@@ -87,7 +87,7 @@ aws s3 sync ../frontend s3://<YOUR_BUCKET_NAME>
 ---
 
 ## 🛡️ Security & Scalability features
-- **IAM Roles**: Least privilege policies attached to Lambda functions (managed in `lambda.tf`).
+- **IAM Roles**: Due to AWS Learner Lab restrictions, Lambda functions use the provided LabRole. The project follows the least-privilege principle within the permissions allowed by the LabRole.
 - **CORS**: Configured in API Gateway and Lambda to allow cross-origin requests from the S3 website.
 - **Auto-scaling**: AWS Lambda and DynamoDB (On-Demand mode) scale automatically with traffic.
 
