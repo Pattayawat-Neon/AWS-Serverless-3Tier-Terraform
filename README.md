@@ -26,7 +26,7 @@ This project leverages AWS Serverless services to ensure scalability, low cost, 
 
 Service Availability: Limited to a subset of AWS services (e.g., CloudFront and Route 53 were not used due to lab permissions).
 
-IAM Restrictions: IAM roles and policies were configured within the scope of the LabRole provided by the environment.
+IAM: All AWS services in this project operate under the permissions of the provided LabRole, due to environment constraints.
 
 Session Management: Infrastructure was designed to be easily reproducible via Terraform to accommodate the 4-hour lab session limit.
 
